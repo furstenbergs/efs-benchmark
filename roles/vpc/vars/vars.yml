@@ -1,0 +1,39 @@
+---
+
+# AWS Credentials
+aws_access_key: "PUT HERE YOUR ACCESS KEYS"
+aws_secret_key: "PUT HERE YOUR SECRET KEYS"
+aws_region:     "eu-central-1"
+
+
+# VPC Information
+vpc_name:       "aws-efs-benchmark"
+vpc_cidr_block: "10.0.0.0/16"
+
+# For Security Group Rule
+my_ip:          "0.0.0.0"
+
+# Subnets
+public_subnet_1_cidr:  "10.0.1.0/24"
+
+# key_name:
+ssh_key_name: "id_rsa"
+
+# AMI Name:
+ami_id: "ami-fa2df395"
+# Centos 7
+
+# Instance type
+type: "m4.4xlarge"
+
+
+# Instance Count
+count_number: "1"
+
+#Public Adrees
+yon: "yes"
+
+
+ec2_tag_Name: "aws_efs_benchmarky"
+ec2_tag_Type: "benchmark"
+ec2_tag_Environment: "load_generator"

@@ -1,0 +1,13 @@
+---
+ - hosts: 127.0.0.1
+   connection: local
+   gather_facts: no
+   vars_files:
+      - roles/vpc/vars/vars.yml
+
+
+
+   roles:
+     - vpc
+     - efs
+     - ec2

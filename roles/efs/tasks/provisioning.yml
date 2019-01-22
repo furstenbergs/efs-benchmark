@@ -1,0 +1,18 @@
+---
+- name: Create Filesystem and make avaible in vpc
+  efs:
+    name: aws_efs_benchmark
+    region: "{{ aws_region }}"
+    state: present
+    performance_mode: general_purpose
+    targets:
+      - subnet_id: "{{ aws_efs_benchmark_public_subnet.subnet.id }}"
+        security_groups: ["{{ aws_efs_benchmark_sg.group_id }}"]
+    tags:
+        name: aws_efs_benchmark
+        purpose: benchmark
+
+  register: aws_efs_benchmark_mount
+
+- set_fact:
+    efs_mount: "{{ aws_efs_benchmark_mount.efs.mount_targets[0].ip_address }}"

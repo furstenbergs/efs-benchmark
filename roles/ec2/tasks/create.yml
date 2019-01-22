@@ -1,0 +1,17 @@
+---
+
+ - name: Launch EC2 Instace for EFS benchmark
+   local_action:
+     module: ec2
+     key_name: "{{ ssh_key_name }}"
+     group_id: ["{{ aws_efs_benchmark_sg.group_id }}"]
+     instance_type: "{{ type }}"
+     image: "{{ ami_id }}"
+     vpc_subnet_id: "{{ aws_efs_benchmark_public_subnet.subnet.id }}"
+     region: "{{ aws_region }}"
+     instance_tags: '{"Name":"{{ec2_tag_Name}}","Type":"{{ec2_tag_Type}}","Environment":"{{ec2_tag_Environment}}"}'
+     assign_public_ip: "{{ yon }}"
+     wait: true
+     count: "{{ count_number }}"
+     user_data: "{{lookup('template', 'templates/script.sh.j2')}}"
+   register: ec2

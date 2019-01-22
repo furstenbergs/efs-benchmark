@@ -1,0 +1,8 @@
+#!/bin/bash
+sudo su -c '
+yum install -y epel-release
+yum clean all
+yum repolist all
+yum -y install bonnie++ nfsometer httpd nfs-utils git wget
+systemctl start httpd
+cd /tmp; nohup nfsometer -r /var/www/html/ -o v4.1 "{{ efs_mount }}"":/" dd_100m_100k dd_100m_1k filebench_fileserver filebench_networkfs filebench_varmail filebench_webserver gitclone &'
